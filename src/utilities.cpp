@@ -30,6 +30,17 @@ json request_completion(openai::OpenAI& openai, const std::string input_line) {
     return openai.chat.create(body);
 }
 
+json request_chat(openai::OpenAI& openai, const json& messages) {
+    json config = load_config();
+    json body = {
+        {"model", config.value("model", "gpt-3.5-turbo")},
+        {"messages", messages},
+        {"max_tokens", config.value("max_tokens", 25)},
+        {"temperature", config.value("temperature", 0)},
+    };
+    return openai.chat.create(body);
+}
+
 std::string get_line(json response) {
     std::string output_line = response["choices"][0]["message"]["content"];
     boost::trim(output_line);
@@ -38,5 +49,10 @@ std::string get_line(json response) {
 
 std::string send_line(openai::OpenAI& openai, const std::string input_line) {
     auto response = request_completion(openai, input_line);
+    return get_line(response);
+}
+
+std::string send_chat(openai::OpenAI& openai, const json& messages) {
+    auto response = request_chat(openai, messages);
     return get_line(response);
 }
