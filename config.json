@@ -1,5 +1,6 @@
 {
     "model": "gpt-3.5-turbo",
-    "max_tokens": 25,
-    "temperature": 0.2
+    "max_tokens": 100,
+    "temperature": 0.2,
+    "prior": "Your role is to be decisive and give very short, precise answers to assist the user."
 }

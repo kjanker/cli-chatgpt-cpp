@@ -13,6 +13,7 @@ ChatSession::ChatSession(openai::_detail::OpenAI& openai) : openai(openai) {
     this->model = config.value("model", "gpt-3.5-turbo");
     this->max_tokens = config.value("max_tokens", 25);
     this->temperature = config.value("temperature", 0);
+    this->append("system", config.value("prior", "Your role is to be decisive and give very short, precise answers to assist the user."));
 };
 
 void ChatSession::append(const Message& message) {
