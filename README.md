@@ -10,11 +10,11 @@ A lightweight command-line implementation of ChatGPT in C++.
 
 ```
 ~ ./main.out
-< How can I help you?
+< Okay, I'm ready. What can I help you with?
 > When did Einstein invent the moon?
 < Einstein did not invent the moon. The moon has existed for billions of years.
-> Then what did Einstein invent?
-< Albert Einstein did not invent anything, but he developed many theories and made significant contributions to the field of physics.
+> So he is just an imposter?
+< No, Einstein was a renowned physicist who made significant contributions to the field of science, including the theory of relativity. However, he did not invent the moon.
 > _
 ```
 
@@ -25,13 +25,11 @@ In order to run the program, you need to set the environment variable ``OPENAI_A
 ## Requirements
 
 ❕ [curl](https://curl.se): for web requests  
-❕ [boost](https://www.boost.org): for string processing  
 ☑️ [nlohmann/json](https://github.com/nlohmann/json): for JSON handling (already include)  
 ☑️ [olrea/openai-cpp](https://github.com/olrea/openai-cpp): for comfortable request hanndling (already include)  
 
 ## Open points
 
-🧩 Session history (currently each request is oblivious of past prompts)  
 🧩 Commands to start/restart/quit program
 
 ## License
