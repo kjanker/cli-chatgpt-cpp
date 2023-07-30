@@ -27,7 +27,8 @@ public:
     ChatSession(openai::_detail::OpenAI& openai);
     void append(const Message& message);
     void append(const std::string role, const std::string content);
-    Message request_response();
+    Message last();
+    bool request_response();
     json to_json();
 };
 

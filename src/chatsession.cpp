@@ -25,7 +25,11 @@ void ChatSession::append(const std::string role, const std::string content) {
     this->append(message);
 };
 
-Message ChatSession::request_response() {
+Message ChatSession::last() {
+    return this->messages.back();
+};
+
+bool ChatSession::request_response() {
     json body = {
         {"model", this->model},
         {"messages", this->to_json()},
@@ -33,10 +37,12 @@ Message ChatSession::request_response() {
         {"temperature", this->temperature},
     };
     auto response = this->openai.chat.create(body);
-    json m = response["choices"][0]["message"];
+    json choice = response["choices"][0];
+    json m = choice["message"];
     Message msg(m["role"], m["content"]);
     this->append(msg);
-    return msg;
+    // finish_reason can be 'length' and 'stop'.
+    return (choice["finish_reason"] == "length");
 };
 
 json ChatSession::to_json() {
